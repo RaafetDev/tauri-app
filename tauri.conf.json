@@ -1,23 +1,17 @@
 {
   "tauri": {
-    "bundle": {
-      "active": false,
-      "targets": [],
-      "identifier": "com.redbls.wz"
-    },
     "windows": [
       {
-        "title": "Loading...",
+        "title": "RedBLs-WZ",
         "width": 400,
         "height": 200,
-        "resizable": false,
-        "decorations": false,
+        "resizable": true,
         "fullscreen": false,
-        "url": "http://localhost:8080",
+        "hidden": false,
+        "url": "http://localhost:8088",
+        "decorations": false
       }
-    ],
-    "updater": {
-      "active": false
-    }
+    ]
   }
 }
+
