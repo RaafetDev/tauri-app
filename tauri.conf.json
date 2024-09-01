@@ -1,17 +1,25 @@
 {
+  "build": {
+    "beforeBuildCommand": "",
+    "beforeDevCommand": "",
+    "devPath": "http://localhost:8088",
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "RedBLs WarZone",
+    "version": "0.1.0"
+  },
   "tauri": {
     "windows": [
       {
         "title": "RedBLs-WZ",
         "width": 400,
         "height": 200,
+        "decorations": false,
         "resizable": true,
         "fullscreen": false,
-        "hidden": false,
-        "url": "http://localhost:8088",
-        "decorations": false
+        "transparent": false
       }
     ]
   }
 }
-
