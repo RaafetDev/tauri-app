@@ -21,7 +21,7 @@ jobs:
         ls -la
 
     - name: Set up Rust
-      uses: actions/setup-rust@v1
+      uses: rust-lang/setup-rust@v1
       with:
         rust-version: '1.72' # or the version required by your project
 
