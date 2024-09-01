@@ -44,6 +44,7 @@ jobs:
         npm init -y
         npm install @tauri-apps/cli
         npx tauri init
+        # Tauri CLI should create a proper package.json with necessary scripts
         npx tauri dev
 
     - name: Replace Tauri config
