@@ -24,7 +24,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '16' # or the version required by your project
+        node-version: '16'
 
     - name: Install Rust
       shell: pwsh
@@ -34,27 +34,27 @@ jobs:
         rustc --version
         cargo --version
 
-    - name: Install create-tauri-app
-      run: npm install -g create-tauri-app
+    - name: Install Tauri CLI
+      run: npm install -g @tauri-apps/cli
 
-    - name: Create Tauri project
+    - name: Initialize Tauri project
       run: |
-        npx create-tauri-app tauri-project --template vanilla
+        mkdir tauri-project
         cd tauri-project
-        npm install
+        npm init -y
+        npm install @tauri-apps/cli
+        npx tauri init
+        npx tauri dev
 
     - name: Replace Tauri config
       run: |
         cd tauri-project
         copy ..\..\tauri.conf.json src-tauri\tauri.conf.json
 
-    - name: Install Tauri CLI
-      run: cargo install tauri-bundler
-
     - name: Build Tauri app
       run: |
         cd tauri-project
-        npm run tauri build
+        npx tauri build
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
