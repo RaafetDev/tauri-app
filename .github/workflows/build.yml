@@ -37,22 +37,15 @@ jobs:
     - name: Install Tauri CLI
       run: npm install -g @tauri-apps/cli
 
-    - name: Initialize Tauri project
+    - name: Setup Tauri Project
       run: |
         mkdir tauri-project
         cd tauri-project
         npm init -y
         npm install @tauri-apps/cli
-        npx tauri init
-        # Tauri CLI should create a proper package.json with necessary scripts
-        npx tauri dev
+        npx tauri init --config ../tauri.conf.json
 
-    - name: Replace Tauri config
-      run: |
-        cd tauri-project
-        copy ..\..\tauri.conf.json src-tauri\tauri.conf.json
-
-    - name: Build Tauri app
+    - name: Build Tauri App
       run: |
         cd tauri-project
         npx tauri build
