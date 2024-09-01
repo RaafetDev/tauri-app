@@ -45,6 +45,10 @@ jobs:
         npm install @tauri-apps/cli
         npx tauri init --ci
 
+    - name: Create Dist Directory
+      run: |
+        mkdir dist
+
     - name: Replace Tauri Config
       shell: pwsh
       run: |
