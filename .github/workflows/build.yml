@@ -37,20 +37,25 @@ jobs:
     - name: Install Tauri CLI
       run: npm install -g @tauri-apps/cli
 
-    - name: Setup Tauri Project
+    - name: Initialize Tauri Project
       run: |
         mkdir tauri-project
         cd tauri-project
         npm init -y
         npm install @tauri-apps/cli
-        npx tauri init --config ../tauri.conf.json
+        npx tauri init --ci
+
+    - name: Replace Tauri Config
+      run: |
+        cd tauri-project
+        Copy-Item -Path ..\..\tauri.conf.json -Destination src-tauri\tauri.conf.json -Force
 
     - name: Build Tauri App
       run: |
         cd tauri-project
         npx tauri build
 
-    - name: Upload artifact
+    - name: Upload Artifact
       uses: actions/upload-artifact@v3
       with:
         name: tauri-app
