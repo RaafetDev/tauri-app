@@ -55,6 +55,11 @@ jobs:
       run: |
         Copy-Item -Path $Env:GITHUB_WORKSPACE\tauri.conf.json -Destination tauri-project\src-tauri\tauri.conf.json -Force
 
+    - name: List Build Artifacts
+      shell: pwsh
+      run: |
+        Get-ChildItem -Path tauri-project\target\release\bundle\windows\ -Force
+
     - name: Build Tauri App
       run: |
         cd tauri-project
