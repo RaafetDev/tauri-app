@@ -19,7 +19,7 @@ jobs:
         Write-Output "Current directory:"
         Get-Location
         Write-Output "Files:"
-        Get-ChildItem -Force
+        Get-ChildItem -Force -Recurse
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
@@ -46,9 +46,9 @@ jobs:
         npx tauri init --ci
 
     - name: Replace Tauri Config
+      shell: pwsh
       run: |
-        cd tauri-project
-        Copy-Item -Path ..\..\tauri.conf.json -Destination src-tauri\tauri.conf.json -Force
+        Copy-Item -Path $Env:GITHUB_WORKSPACE\tauri.conf.json -Destination tauri-project\src-tauri\tauri.conf.json -Force
 
     - name: Build Tauri App
       run: |
