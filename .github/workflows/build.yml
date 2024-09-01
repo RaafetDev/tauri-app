@@ -14,11 +14,12 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Print directory structure
+      shell: pwsh
       run: |
-        echo "Current directory:"
-        pwd
-        echo "Files:"
-        ls -la
+        Write-Output "Current directory:"
+        Get-Location
+        Write-Output "Files:"
+        Get-ChildItem -Force
 
     - name: Set up Node.js
       uses: actions/setup-node@v3
@@ -26,9 +27,10 @@ jobs:
         node-version: '16' # or the version required by your project
 
     - name: Install Rust
+      shell: pwsh
       run: |
         curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-        echo "C:\Users\runneradmin\.cargo\bin" >> $Env:PATH
+        [System.Environment]::SetEnvironmentVariable("PATH", "$env:PATH;C:\Users\runneradmin\.cargo\bin", [System.EnvironmentVariableTarget]::Machine)
         rustc --version
         cargo --version
 
@@ -44,7 +46,7 @@ jobs:
     - name: Replace Tauri config
       run: |
         cd tauri-project
-        cp ../../tauri.conf.json src-tauri/tauri.conf.json
+        copy ..\..\tauri.conf.json src-tauri\tauri.conf.json
 
     - name: Install Tauri CLI
       run: cargo install tauri-bundler
