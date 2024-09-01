@@ -2,8 +2,8 @@ name: Build Tauri App
 
 on:
   push:
-    tags:
-      - 'v*.*.*'
+    branches:
+      - main
 
 jobs:
   build:
@@ -12,6 +12,13 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Print directory structure
+      run: |
+        echo "Current directory:"
+        pwd
+        echo "Files:"
+        ls -la
 
     - name: Set up Rust
       uses: actions/setup-rust@v1
@@ -23,18 +30,18 @@ jobs:
       with:
         node-version: '16' # or the version required by your project
 
-    - name: Install dependencies
+    - name: Install create-tauri-app
+      run: npm install -g create-tauri-app
+
+    - name: Create Tauri project
       run: |
-        npm install -g create-tauri-app
-        # Create a new Tauri project
-        create-tauri-app tauri-project --template vanilla
+        npx create-tauri-app tauri-project --template vanilla
         cd tauri-project
         npm install
 
     - name: Replace Tauri config
       run: |
         cd tauri-project
-        # Replace the tauri.conf.json with the one from the repository
         cp ../../tauri.conf.json src-tauri/tauri.conf.json
 
     - name: Install Tauri CLI
