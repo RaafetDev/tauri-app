@@ -1,0 +1,27 @@
+{
+  "build": {
+    "distDir": "dist",
+    "devPath": "http://localhost:8080",
+    "withGlobalTauri": false
+  },
+  "tauri": {
+    "bundle": {
+      "active": false,
+      "targets": [],
+      "identifier": "com.redbls.wz"
+    },
+    "windows": [
+      {
+        "title": "Loading...",
+        "width": 400,
+        "height": 200,
+        "resizable": false,
+        "decorations": false,
+        "fullscreen": false
+      }
+    ],
+    "updater": {
+      "active": false
+    }
+  }
+}
