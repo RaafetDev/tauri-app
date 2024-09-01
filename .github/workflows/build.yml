@@ -58,7 +58,7 @@ jobs:
     - name: List Build Artifacts
       shell: pwsh
       run: |
-        Get-ChildItem -Path tauri-project\target\release\bundle\windows\ -Force
+        Get-ChildItem -Path tauri-project\target\release\ -Force
 
     - name: Build Tauri App
       run: |
@@ -69,4 +69,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: tauri-app
-        path: tauri-project/target/release/bundle/windows/*.exe
+        path: tauri-project/target/release/*.exe
