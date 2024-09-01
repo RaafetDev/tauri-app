@@ -1,9 +1,4 @@
 {
-  "build": {
-    "distDir": "dist",
-    "devPath": "http://localhost:8080",
-    "withGlobalTauri": false
-  },
   "tauri": {
     "bundle": {
       "active": false,
@@ -17,7 +12,8 @@
         "height": 200,
         "resizable": false,
         "decorations": false,
-        "fullscreen": false
+        "fullscreen": false,
+        "url": "http://localhost:8080",
       }
     ],
     "updater": {
