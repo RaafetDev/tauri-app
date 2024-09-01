@@ -58,7 +58,7 @@ jobs:
     - name: List Build Artifacts
       shell: pwsh
       run: |
-        Get-ChildItem -Path tauri-project\src-tauri\target\release\ -Force
+        Get-ChildItem -Path tauri-project\src-tauri\ -Force
 
     - name: Build Tauri App
       run: |
