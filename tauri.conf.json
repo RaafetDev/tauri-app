@@ -3,7 +3,7 @@
     "beforeBuildCommand": "",
     "beforeDevCommand": "",
     "devPath": "http://localhost:8088",
-    "distDir": "../dist"
+    "distDir": "dist"
   },
   "package": {
     "productName": "RedBLs WarZone",
