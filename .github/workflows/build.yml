@@ -20,15 +20,17 @@ jobs:
         echo "Files:"
         ls -la
 
-    - name: Set up Rust
-      uses: actions/setup-rust@v1
-      with:
-        rust-version: '1.72' # or the version required by your project
-
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
         node-version: '16' # or the version required by your project
+
+    - name: Install Rust
+      run: |
+        curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+        echo "C:\Users\runneradmin\.cargo\bin" >> $Env:PATH
+        rustc --version
+        cargo --version
 
     - name: Install create-tauri-app
       run: npm install -g create-tauri-app
