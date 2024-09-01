@@ -1,0 +1,52 @@
+name: Build Tauri App
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Rust
+      uses: actions/setup-rust@v1
+      with:
+        rust-version: '1.72' # or the version required by your project
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16' # or the version required by your project
+
+    - name: Install dependencies
+      run: |
+        npm install -g create-tauri-app
+        # Create a new Tauri project
+        create-tauri-app tauri-project --template vanilla
+        cd tauri-project
+        npm install
+
+    - name: Replace Tauri config
+      run: |
+        cd tauri-project
+        # Replace the tauri.conf.json with the one from the repository
+        cp ../../tauri.conf.json src-tauri/tauri.conf.json
+
+    - name: Install Tauri CLI
+      run: cargo install tauri-bundler
+
+    - name: Build Tauri app
+      run: |
+        cd tauri-project
+        npm run tauri build
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: tauri-app
+        path: tauri-project/target/release/bundle/windows/*.exe
