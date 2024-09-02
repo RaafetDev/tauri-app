@@ -59,11 +59,6 @@ jobs:
       run: |
         cd tauri-project
         npx tauri build
-
-    - name: List Build Artifacts
-      shell: pwsh
-      run: |
-        Get-ChildItem -Path tauri-project\src-tauri\release\ -Force
         
     - name: Upload Artifact
       uses: actions/upload-artifact@v3
