@@ -49,6 +49,11 @@ jobs:
       run: |
         cd tauri-project\src-tauri
         mkdir dist
+        
+    - name: Copy dist content
+      shell: pwsh
+      run: |
+        Copy-Item -Path "$Env:GITHUB_WORKSPACE\dist\*" -Destination "tauri-project\src-tauri\dist" -Recurse -Force
 
     - name: Replace Tauri Config
       shell: pwsh
