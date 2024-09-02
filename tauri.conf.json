@@ -10,6 +10,14 @@
     "version": "0.1.0"
   },
   "tauri": {
+    "security": {
+      "csp": null
+    },
+    "allowlist": {
+      "http": {
+        "all": true
+      }
+    },
     "windows": [
       {
         "title": "RedBLs-WZ",
